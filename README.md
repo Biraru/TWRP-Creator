@@ -1,8 +1,4 @@
-## Automated TWRP compilation based on Github Action
-
-## Advertising
-
-1. OrangeFox is [here](https://github.com/azwhikaru/Action-OFRP-Builder)
+# Automated TWRP compilation based on Github Action
 
 ## Notice
 
