@@ -6,12 +6,16 @@ on:
 jobs:
   firststep:
     if: github.event.repository.owner.id == github.event.sender.id
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
     - name: Check Out
       uses: actions/checkout@v4
+    - name: Install Stuff
+      run: \
+        sudo apt update && sudo apt upgrade \
+        sudo apt install cat mkdir
     - name: Make File
       run: \
         mkdir Testing
@@ -20,7 +24,7 @@ jobs:
         echo "E" > test.txt
   secondstep:
       if: github.event.repository.owner.id == github.event.sender.id
-      runs-on: ubuntu-24.04
+      runs-on: ubuntu-latest
       permissions:
         contents: write
       steps:
