@@ -4,43 +4,48 @@ on:
   workflow_dispatch:
     inputs:
       MANIFEST_URL:
-        description: 'MANIFEST_URL (if want to use SSH keys, use git@github.com:XXXXX)'
+        description: 'Manifest URL (if want to use SSH keys, use git@github.com:XXXXX)'
         required: true
         default: 'https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp'
       MANIFEST_BRANCH:
-        description: 'MANIFEST_BRANCH'
+        description: 'Specify your Manifest URL'
         required: true
         default: 'twrp-12.1'
       DEVICE_TREE_URL:
-        description: 'DEVICE_TREE_URL'
+        description: 'Device Tree URL'
         required: true
         default: 'https://github.com/TeamWin/android_device_asus_I003D'
       DEVICE_TREE_BRANCH:
-        description: 'DEVICE_TREE_BRANCH'
+        description: 'Specify your Device Tree Branch'
         required: true
         default: 'android-12.1'
       DEVICE_PATH:
-        description: 'DEVICE_PATH'
+        description: 'Specify your Device Path'
         required: true
         default: 'device/asus/I003D'
       COMMON_TREE_URL:
-        description: 'COMMON_TREE_URL (if no common tree, leave blank)'
+        description: 'Common Tree URL (if no common tree, leave blank)'
         required: false
       COMMON_PATH:
-        description: 'COMMON_PATH (if no common tree, leave blank)'
+        description: 'Common Path (if no common tree, leave blank)'
         required: false
       DEVICE_NAME:
-        description: 'DEVICE_NAME'
+        description: 'Specify your Device Name'
         required: true
         default: 'I003D'
       MAKEFILE_NAME:
-        description: 'MAKEFILE_NAME'
+        description: 'Specify your Makefile Name'
         required: true
         default: 'twrp_I003D'
       BUILD_TARGET:
-        description: 'BUILD_TARGET'
+        description: 'Specify your Build Target' # The image suffix will be added later in build step.
         required: true
         default: 'recovery'
+        type: choice
+        options:
+        - boot
+        - recovery
+        - vendorboot
 
 jobs:
   build:
