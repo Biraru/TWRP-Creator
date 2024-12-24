@@ -1,0 +1,30 @@
+name: Testing
+
+on:
+  workflow_dispatch:
+
+jobs:
+  firststep:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+    - name: Make File
+      run: \
+        mkdir Testing
+        ls -a
+        cd Testing
+        echo "E" > test.txt
+  secondstep:
+      if: github.event.repository.owner.id == github.event.sender.id
+      runs-on: ubuntu-24.04
+      permissions:
+        contents: write
+      steps:
+      - name: Make File
+        run: \
+          ls -a
+          cd Testing
+          ls -a
+          cat test.txt
