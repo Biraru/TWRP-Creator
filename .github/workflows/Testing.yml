@@ -10,6 +10,8 @@ jobs:
     permissions:
       contents: write
     steps:
+    - name: Check Out
+      uses: actions/checkout@v4
     - name: Make File
       run: \
         mkdir Testing
@@ -22,6 +24,8 @@ jobs:
       permissions:
         contents: write
       steps:
+      - name: Check Out
+        uses: actions/checkout@v4
       - name: Make File
         run: \
           ls -a
