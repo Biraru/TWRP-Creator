@@ -6,33 +6,33 @@ on:
 jobs:
   firststep:
     if: github.event.repository.owner.id == github.event.sender.id
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
     - name: Check Out
       uses: actions/checkout@v4
     - name: Install Stuff
-      run: \
-        apt update && apt upgrade \
-        apt install cat mkdir
+      run: |
+        sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y coreutils
     - name: Make File
-      run: \
+      run: |
         mkdir Testing
         ls -a
         cd Testing
         echo "E" > test.txt
+
   secondstep:
-      if: github.event.repository.owner.id == github.event.sender.id
-      runs-on: ubuntu-24.04
-      permissions:
-        contents: write
-      steps:
-      - name: Check Out
-        uses: actions/checkout@v4
-      - name: Make File
-        run: \
-          ls -a
-          cd Testing
-          ls -a
-          cat test.txt
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Check Out
+      uses: actions/checkout@v4
+    - name: Make File
+      run: |
+        ls -a
+        cd Testing
+        ls -a
+        cat test.txt
