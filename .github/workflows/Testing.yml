@@ -14,8 +14,8 @@ jobs:
       uses: actions/checkout@v4
     - name: Install Stuff
       run: \
-        sudo apt update && sudo apt upgrade \
-        sudo apt install cat mkdir
+        apt update && apt upgrade \
+        apt install cat mkdir
     - name: Make File
       run: \
         mkdir Testing
