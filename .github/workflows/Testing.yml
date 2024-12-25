@@ -24,6 +24,7 @@ jobs:
 
   secondstep:
     if: github.event.repository.owner.id == github.event.sender.id
+    needs: firststep
     runs-on: ubuntu-latest
     permissions:
       contents: write
