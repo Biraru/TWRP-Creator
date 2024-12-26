@@ -164,7 +164,7 @@ jobs:
       uses: jaywcjlove/github-action-folder-tree@main
       with:
           path: ${{ github.workspace }}
-          exclude: "node_modules|dist|.git|.husky"
+          exclude: "node_modules|dist|.git|.husky|.repo"
       
     - name: Upload to Release
       uses: softprops/action-gh-release@v2
