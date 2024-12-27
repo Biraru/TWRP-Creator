@@ -14,15 +14,15 @@ on:
       DEVICE_TREE_URL:
         description: 'Device Tree URL'
         required: true
-        default: 'https://github.com/TeamWin/android_device_asus_I003D'
+        default: 'https://github.com/BiraruX/android_device_xiaomi_emerald'
       DEVICE_TREE_BRANCH:
         description: 'Specify your Device Tree Branch'
         required: true
-        default: 'android-12.1'
+        default: 'android-14'
       DEVICE_PATH:
         description: 'Specify your Device Path'
         required: true
-        default: 'device/asus/I003D'
+        default: 'device/xiaomi/emerald'
       COMMON_TREE_URL:
         description: 'Common Tree URL (if no common tree, leave blank)'
         required: false
@@ -32,15 +32,15 @@ on:
       DEVICE_NAME:
         description: 'Specify your Device Name'
         required: true
-        default: 'I003D'
+        default: 'emerald'
       MAKEFILE_NAME:
         description: 'Specify your Makefile Name'
         required: true
-        default: 'twrp_I003D'
+        default: 'twrp_emerald'
       BUILD_TARGET:
         description: 'Specify your Build Target' # The image suffix will be added later in build step.
         required: true
-        default: 'recovery'
+        default: 'vendorboot'
         type: choice
         options:
         - boot
@@ -169,11 +169,11 @@ jobs:
     - name: Set Build Date # Output will be use in Release
       if: success()
       run: |
-        echo "BUILD_DATE=$(date +%D%M%Y)" >> $GITHUB_ENV
+        echo "BUILD_DATE=$(date '+%d %B %Y')" >> $GITHUB_ENV
       
     - name: Upload to Release
       if: success()
-      uses: softprops/action-gh-release@master
+      uses: softprops/action-gh-release@v2
       with:
         files: |
           ${{ github.workspace }}/workspace/out/target/product/${{ inputs.DEVICE_NAME }}/${{ inputs.BUILD_TARGET }}.img
