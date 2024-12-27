@@ -141,12 +141,12 @@ jobs:
         if_true: twrp
         if_false: omni
 
-    #- name: Sync Device Dependencies
-    #  run: |
-    #    bash ${GITHUB_WORKSPACE}/local_scripts/convert.sh ${{ github.event.inputs.DEVICE_PATH }}/${{ steps.buildtree.outputs.value }}.dependencies
-    #    repo sync -j$(nproc --all)
-    #    working-directory: ${{ steps.pwd.outputs.workspace-folder }}
-    #    continue-on-error: true
+    - name: Sync Device Dependencies
+      run: |
+        bash ${GITHUB_WORKSPACE}/local_scripts/convert.sh ${{ github.event.inputs.DEVICE_PATH }}/${{ steps.buildtree.outputs.value }}.dependencies
+        repo sync -j$(nproc --all)
+        working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+        continue-on-error: true
 
     - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
@@ -157,7 +157,7 @@ jobs:
       run: |
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
-        lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all) TARGET_BUILD_VARIANT=userdebug
+        lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       
     - name: List Directory Structure
