@@ -182,7 +182,7 @@ jobs:
           ${{ github.workspace }}/workspace/out/target/product/${{ inputs.DEVICE_NAME }}/ramdisk-recovery.*
           ${{ github.workspace }}/workspace/out/target/product/${{ inputs.DEVICE_NAME }}/vbmeta.*
         name: Unofficial TWRP for ${{ inputs.DEVICE_NAME }} // ${{ env.BUILD_DATE }}
-        tag_name: ${{ github.run_id }}
+        tag_name: ${{ github.event.inputs.DEVICE_NAME }}
         body: |
           Build: ${{ inputs.MANIFEST_BRANCH }}
           Device: [Device Tree/Branch](${{ inputs.DEVICE_TREE }}/tree/${{ inputs.DEVICE_TREE_BRANCH }})
