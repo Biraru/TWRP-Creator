@@ -163,7 +163,7 @@ jobs:
     - name: List Directory Structure
       uses: jaywcjlove/github-action-folder-tree@main
       with:
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/out
           exclude: "node_modules|dist|.git|.husky|.repo"
       
     - name: Set Build Date # Output will be use in Release
