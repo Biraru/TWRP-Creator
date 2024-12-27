@@ -5,11 +5,11 @@ on:
     inputs:
       MANIFEST_URL:
         description: 'Manifest URL (if want to use SSH keys, use git@github.com:XXXXX)'
-        required: true
+        required: false
         default: 'https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp'
       MANIFEST_BRANCH:
-        description: 'Specify your Manifest URL'
-        required: true
+        description: 'Specify your Manifest Branch'
+        required: false
         default: 'twrp-12.1'
       DEVICE_TREE_URL:
         description: 'Device Tree URL'
@@ -45,7 +45,7 @@ on:
         options:
         - boot
         - recovery
-        - vendorboot
+        - vendor_boot
 
 jobs:
   build:
