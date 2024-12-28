@@ -10,7 +10,7 @@ on:
       MANIFEST_BRANCH:
         description: 'Specify your Manifest Branch'
         required: false
-        default: 'twrp-12.1'
+        default: 'twrp-14'
       DEVICE_TREE_URL:
         description: 'Device Tree URL'
         required: true
@@ -36,7 +36,7 @@ on:
       MAKEFILE_NAME:
         description: 'Specify your Makefile Name'
         required: true
-        default: 'twrp_crownqlte'
+        default: 'twrp_crownqltekdi'
       BUILD_TARGET:
         description: 'Specify your Build Target' # The image suffix will be added later in build step.
         required: true
