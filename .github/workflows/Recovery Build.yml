@@ -14,15 +14,15 @@ on:
       DEVICE_TREE_URL:
         description: 'Device Tree URL'
         required: true
-        default: 'https://github.com/BiraruX/android_device_xiaomi_emerald'
+        default: 'https://github.com/BiraruX/android_device_samsung_crownqltekdi'
       DEVICE_TREE_BRANCH:
         description: 'Specify your Device Tree Branch'
         required: true
-        default: 'android-14'
+        default: 'android-10'
       DEVICE_PATH:
         description: 'Specify your Device Path'
         required: true
-        default: 'device/xiaomi/emerald'
+        default: 'device/samsung/crownqltekdi'
       COMMON_TREE_URL:
         description: 'Common Tree URL (if no common tree, leave blank)'
         required: false
@@ -32,15 +32,15 @@ on:
       DEVICE_NAME:
         description: 'Specify your Device Name'
         required: true
-        default: 'emerald'
+        default: 'crownqltekdi'
       MAKEFILE_NAME:
         description: 'Specify your Makefile Name'
         required: true
-        default: 'twrp_emerald'
+        default: 'twrp_crownqlte'
       BUILD_TARGET:
         description: 'Specify your Build Target' # The image suffix will be added later in build step.
         required: true
-        default: 'vendorboot'
+        default: 'recovery'
         type: choice
         options:
         - boot
