@@ -50,7 +50,7 @@ on:
 jobs:
   build:
     if: github.event.repository.owner.id == github.event.sender.id
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-20.04
     permissions:
       contents: write
     steps:
@@ -76,7 +76,6 @@ jobs:
 
     - name: Prepare the build environment
       run: |
-        echo "deb http://security.ubuntu.com/ubuntu focal-security main universe" > /etc/apt/sources.list.d/ubuntu-focal-sources.list
         sudo apt update && sudo apt upgrade -y
         DEBIAN_FRONTEND=noninteractive sudo apt install -yq \
             linux-modules-extra-$(uname -r) \
