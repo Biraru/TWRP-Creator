@@ -1,4 +1,4 @@
-name: Recovery Build
+name: Infinix X650 Recovery Build
 
 on:
   workflow_dispatch:
