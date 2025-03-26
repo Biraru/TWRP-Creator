@@ -18,7 +18,7 @@ on:
       DEVICE_TREE_BRANCH:
         description: 'Specify your Device Tree Branch'
         required: true
-        default: 'android-8.1'
+        default: 'test'
       DEVICE_PATH:
         description: 'Specify your Device Path'
         required: true
