@@ -22,7 +22,7 @@ on:
       DEVICE_PATH:
         description: 'Specify your Device Path'
         required: true
-        default: 'device/infinix/Infinix-X650'
+        default: 'device/infinix/Infinix_X650'
       COMMON_TREE_URL:
         description: 'Common Tree URL (if no common tree, leave blank)'
         required: false
@@ -32,11 +32,11 @@ on:
       DEVICE_NAME:
         description: 'Specify your Device Name'
         required: true
-        default: 'Infinix-X650'
+        default: 'Infinix_X650'
       MAKEFILE_NAME:
         description: 'Specify your Makefile Name'
         required: true
-        default: 'twrp_Infinix-X650'
+        default: 'twrp_Infinix_X650'
       BUILD_TARGET:
         description: 'Specify your Build Target' # The image suffix will be added later in build step.
         required: true
