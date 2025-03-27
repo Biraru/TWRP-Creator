@@ -162,8 +162,8 @@ jobs:
     - name: Archive Source Code
       if: success()
       run: |
-        zip -r dt-source.zip ${{ github.workspace }}/archive/
-        tar -czvf dt-source.tar.gz ${{ github.workspace }}/archive/
+        zip -r dt-source.zip ${{ steps.pwd.outputs.workspace-folder }}/archive/
+        tar -czvf dt-source.tar.gz ${{ steps.pwd.outputs.workspace-folder }}/archive/
 
     - name: Upload to Release
       if: success()
