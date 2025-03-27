@@ -124,7 +124,9 @@ jobs:
 
     - name: Clone device tree
       run: |
+        mkdir archive
         git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
+        git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} archive/
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Clone common tree
@@ -157,6 +159,12 @@ jobs:
       run: |
         echo "BUILD_DATE=$(date '+%d %B %Y')" >> $GITHUB_ENV
 
+    - name: Archive Source Code
+      if: success()
+      run: |
+        zip -r dt-source.zip archive/
+        tar -czvf dt-source.tar.gz archive/
+
     - name: Upload to Release
       if: success()
       uses: softprops/action-gh-release@v2
@@ -166,6 +174,8 @@ jobs:
           ${{ github.workspace }}/workspace/out/target/product/${{ inputs.DEVICE_NAME }}/*installer*zip
           ${{ github.workspace }}/workspace/out/target/product/${{ inputs.DEVICE_NAME }}/ramdisk-recovery.*
           ${{ github.workspace }}/workspace/out/target/product/${{ inputs.DEVICE_NAME }}/vbmeta.*
+          ${{ github.workspace }}/dt-source.zip
+          ${{ github.workspace }}/dt-source.tar.gz
         name: Unofficial TWRP for ${{ inputs.DEVICE_NAME }} // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}
         body: |
