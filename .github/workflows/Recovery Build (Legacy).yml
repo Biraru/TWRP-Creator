@@ -36,7 +36,7 @@ on:
       MAKEFILE_NAME:
         description: 'Specify your Makefile Name'
         required: true
-        default: 'twrp_Infinix_X650'
+        default: 'omni_Infinix_X650'
       BUILD_TARGET:
         description: 'Specify your Build Target' # The image suffix will be added later in build step.
         required: true
