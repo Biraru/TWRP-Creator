@@ -131,10 +131,8 @@ jobs:
 
     - name: Get Device Tree Commit Hash
       run: |
-        cd archive
         git ls-remote ${{ github.event.inputs.DEVICE_TREE_URL }} refs/heads/${{ github.event.inputs.DEVICE_TREE_BRANCH }} | awk '{print $1}' > device_tree_commit.txt
         cat device_tree_commit.txt
-        cd ../
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       id: get_device_tree_commit
 
