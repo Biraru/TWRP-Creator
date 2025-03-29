@@ -164,6 +164,11 @@ jobs:
       run: |
         echo "BUILD_DATE=$(date '+%d %B %Y')" >> $GITHUB_ENV
 
+    - name: Set Commit Hash
+      if: success()
+      run: |
+        echo "COMMIT_HASH=$(cat ${{ github.workspace }}/workspace/device_tree_commit.txt)" >> $GITHUB_ENV
+
     - name: Archive Source Code
       if: success()
       run: |
@@ -186,5 +191,5 @@ jobs:
         body: |
           Build: ${{ inputs.MANIFEST_BRANCH }}
           Device: [Device Tree/Branch](${{ github.event.inputs.DEVICE_TREE_URL }}/tree/${{ github.event.inputs.DEVICE_TREE_BRANCH }})
-          Commit: Most recent [commit](${{ github.event.inputs.DEVICE_TREE_URL }}/commit/$(cat ${{ github.workspace }}/workspace/device_tree_commit.txt)) during building.
+          Commit: Most recent [commit](${{ github.event.inputs.DEVICE_TREE_URL }}/commit/${{ env.COMMIT_HASH }}) during building.
         prerelease: true
