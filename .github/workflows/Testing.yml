@@ -59,19 +59,26 @@ jobs:
           echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
         id: pwd
 
-      - name: Clone device tree
+            - name: Clone device tree
         run: |
-          mkdir archive
+          mkdir -p archive
           git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
           git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} archive/
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
+      - name: Verify git status
+        run: |
+          git log -1 --oneline
+          git rev-parse HEAD
+        working-directory: ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.DEVICE_PATH }}
+
       - name: Get Device Tree Commit Hash
         run: |
           git rev-parse HEAD > ${{ github.workspace }}/workspace/device_tree_commit.txt
+        working-directory: ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.DEVICE_PATH }}
         id: get_device_tree_commit
 
       - name: Echo and LS
         run: |
-          tree
+          cat ${{ github.workspace }}/workspace/device_tree_commit.txt
           echo "[commit](${{ github.event.inputs.DEVICE_TREE_URL }}/commit/$(cat ${{ github.workspace }}/workspace/device_tree_commit.txt))"
