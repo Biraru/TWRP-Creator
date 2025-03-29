@@ -131,9 +131,11 @@ jobs:
 
     - name: Get Device Tree Commit Hash
       run: |
-        tree
-        git rev-parse HEAD > ../../device_tree_commit.txt
-        cat ../../device_tree_commit.txt
+        cd archive
+        git rev-parse HEAD > device_tree_commit.txt
+        cat device_tree_commit.txt
+        cd ../
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       id: get_device_tree_commit
 
     - name: Clone common tree
