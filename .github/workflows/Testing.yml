@@ -2,6 +2,45 @@ name: Testing
 
 on:
   workflow_dispatch:
+    inputs:
+        MANIFEST_URL:
+          description: 'Manifest URL (if want to use SSH keys, use git@github.com:XXXXX)'
+          required: true
+          default: 'https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni'
+        MANIFEST_BRANCH:
+          description: 'Specify your Manifest Branch'
+          required: true
+          default: 'twrp-8.1'
+        DEVICE_TREE_URL:
+          description: 'Device Tree URL'
+          required: true
+          default: 'https://github.com/BiraruStudios/android_device_infinix_X650'
+        DEVICE_TREE_BRANCH:
+          description: 'Specify your Device Tree Branch'
+          required: true
+          default: 'test'
+        DEVICE_PATH:
+          description: 'Specify your Device Path'
+          required: true
+          default: 'device/infinix/Infinix_X650'
+        COMMON_TREE_URL:
+          description: 'Common Tree URL (if no common tree, leave blank)'
+          required: false
+        COMMON_PATH:
+          description: 'Common Path (if no common tree, leave blank)'
+          required: false
+        DEVICE_NAME:
+          description: 'Specify your Device Name'
+          required: true
+          default: 'Infinix_X650'
+        MAKEFILE_NAME:
+          description: 'Specify your Makefile Name'
+          required: true
+          default: 'omni_Infinix_X650'
+        BUILD_TARGET:
+          description: 'Specify your Build Target'
+          required: true
+          default: 'recovery'
 
 jobs:
   build:
