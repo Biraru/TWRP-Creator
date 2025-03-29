@@ -59,7 +59,7 @@ jobs:
           echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
         id: pwd
 
-            - name: Clone device tree
+      - name: Clone device tree
         run: |
           mkdir -p archive
           git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
