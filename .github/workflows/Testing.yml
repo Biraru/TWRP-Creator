@@ -1,0 +1,38 @@
+name: Testing
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - name: Check Out
+        uses: actions/checkout@v4
+
+      - name: Initialize repo
+        run: |
+          mkdir workspace
+          cd workspace
+          echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
+        id: pwd
+
+      - name: Clone device tree
+        run: |
+          mkdir archive
+          git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ./${{ github.event.inputs.DEVICE_PATH }}
+          git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} archive/
+        working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+
+      - name: Get Device Tree Commit Hash
+        run: |
+          git rev-parse HEAD > ../device_tree_commit.txt
+        id: get_device_tree_commit
+
+      - name: Echo and LS
+        run: |
+          tree
+          echo "[commit](${{ github.event.inputs.DEVICE_TREE_URL }}/commit/$(cat ${{ github.workspace }}/workspace/device_tree_commit.txt))"
