@@ -38,7 +38,7 @@ on:
         required: true
         default: 'omni_Infinix_X650'
       BUILD_TARGET:
-        description: 'Specify your Build Target' # The image suffix will be added later in build step.
+        description: 'Specify your Build Target'
         required: true
         default: 'recovery'
 
@@ -129,6 +129,11 @@ jobs:
         git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} archive/
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
+    - name: Get Device Tree Commit Hash
+      run: |
+        git rev-parse HEAD > ../device_tree_commit.txt
+      id: get_device_tree_commit
+
     - name: Clone common tree
       if: ${{ github.event.inputs.COMMON_TREE_URL && github.event.inputs.COMMON_PATH }}
       run: |
@@ -181,5 +186,5 @@ jobs:
         body: |
           Build: ${{ inputs.MANIFEST_BRANCH }}
           Device: [Device Tree/Branch](${{ github.event.inputs.DEVICE_TREE_URL }}/tree/${{ github.event.inputs.DEVICE_TREE_BRANCH }})
-          Commit: Most recent [commit](${{ github.event.inputs.DEVICE_TREE_URL }}/commit/${{ env.COMMIT_ID }}) during building.
+          Commit: Most recent [commit](${{ github.event.inputs.DEVICE_TREE_URL }}/commit/$(cat ${{ github.workspace }}/workspace/device_tree_commit.txt)) during building.
         prerelease: true
