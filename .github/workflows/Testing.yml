@@ -66,12 +66,6 @@ jobs:
           git clone ${{ github.event.inputs.DEVICE_TREE_URL }} -b ${{ github.event.inputs.DEVICE_TREE_BRANCH }} archive/
         working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
-      - name: Verify git status
-        run: |
-          git log -1 --oneline
-          git rev-parse HEAD
-        working-directory: ${{ steps.pwd.outputs.workspace-folder }}/${{ github.event.inputs.DEVICE_PATH }}
-
       - name: Get Device Tree Commit Hash
         run: |
           git rev-parse HEAD > ${{ github.workspace }}/workspace/device_tree_commit.txt
